@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MoneyTrakr.Models.TransactionItem>
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="page-header">
+	<h2>Register</h2>
+</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Description
+					</th>
+					<th>
+						Amount
+					</th>
+					
+					<th>
+						CreatedDate
+					</th>
+                    <th>
+						Total
+					</th
+				</tr>
+			</thead>
+			<tbody>
+
+@foreach (var item in Model) {
+				<tr>
+					<td>
+						@item.Description
+					</td>
+					<td>
+						@String.Format("{0:C}", item.Amount)
+					</td>
+					
+					<td>
+						@String.Format("{0:d}", item.CreatedDate)
+					</td>
+                    <td>
+                        @String.Format("{0:C}", item.RunningTotal)
+                    </td>
+			</tr>
+}
+		</tbody>
+	</table>
+

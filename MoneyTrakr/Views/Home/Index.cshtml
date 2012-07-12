@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script type="text/javascript">
+     google.load("visualization", "1", { packages: ["corechart"] });
+     google.setOnLoadCallback(drawChart);
+     function drawChart() {
+         
+         var data = new google.visualization.DataTable();
+         data.addColumn('string', 'Month');
+         data.addColumn('number', 'Amount');
+         data.addRows(7);
+         $.post('@Url.Content("~/Home/ChartData")', function (items) {
+            // alert(JSON.stringify(items));
+             //alert("Length :" + items.rows.length);
+           //  data.addRows(items.length + 1);
+             //data.setCell(0, "Month", "Amount");
+             $.each(items, function (i, item) {
+            //     alert(item.Month);
+                 data.setCell(i, 0, item.Month);
+                 data.setCell(i, 1, item.Amount);
+
+             });
+             var options = {
+                 title: 'Projected Finances'
+             };
+
+             var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+             chart.draw(data, options);
+         });
+        
+      
+
+        
+     }
+    </script>
+<div class="page-header">
+    <h2>@ViewBag.Message</h2>
+</div>
+<p>
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">
+        http://asp.net/mvc</a>.
+</p>
+<div>
+     <div id="chart_div" style="width: 900px; height: 500px;"></div>
+</div>
+<div>
+    
+</div>
+<div>
+    @Html.Partial("ProjectedPartialView", MoneyTrakr.Models.DailySummary.GetDailySummary(180))
+</div>

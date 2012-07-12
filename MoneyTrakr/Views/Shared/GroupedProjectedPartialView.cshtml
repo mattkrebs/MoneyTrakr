@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MoneyTrakr.Models.ProjectionData>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Month
+					</th>
+					<th>
+						Amount
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+
+@foreach (var item in Model) {
+				<tr>
+					
+					<td>
+						@item.Month
+					</td>
+					<td>
+						@String.Format("{0:F}", item.Amount)
+					</td>
+			</tr>
+}
+		</tbody>
+	</table>
+

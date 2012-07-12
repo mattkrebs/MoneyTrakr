@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MoneyTrakr.Recurring>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="page-header">
+	<h2>Recurring Bills and Income</h2>
+</div>
+		<p>
+			@Html.ActionLink("Create New", "Create")
+		</p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>
+						Description
+					</th>
+					<th>
+						Automatic
+					</th>
+					<th>
+						StartDate
+					</th>
+					<th>
+						Amount
+					</th>
+					<th>
+						RecurWeekly
+					</th>
+					<th>
+						RecurBiWeekly
+					</th>
+					<th>
+						RecurMontly
+					</th>
+                    <th></th>
+				</tr>
+			</thead>
+			<tbody>
+
+@foreach (var item in Model) {
+				<tr>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id=item.ID }) |						
+						@Html.ActionLink("Delete", "Delete", new { id=item.ID })
+					</td>
+					<td>
+						@item.Description
+					</td>
+					<td>
+						@item.Automatic
+					</td>
+					<td>
+						@String.Format("{0:g}", item.StartDate)
+					</td>
+					<td>
+						@String.Format("{0:F}", item.Amount)
+					</td>
+					<td>
+						@item.RecurWeekly
+					</td>
+					<td>
+						@item.RecurBiWeekly
+					</td>
+					<td>
+						@item.RecurMontly
+					</td>
+                    <td>
+                    @if (!item.Automatic)
+                    {
+                        @Html.ActionLink("Add Payment", "Add", "Transaction", new { id = item.ID }, null)
+                    }
+                    </td>
+			</tr>
+}
+		</tbody>
+	</table>
+

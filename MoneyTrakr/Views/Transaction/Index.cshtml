@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MoneyTrakr.Transaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="page-header">
+	<h2>Recent Manual Transactions</h2>
+</div>
+		<p>
+			@Html.ActionLink("Create New", "Create")
+		</p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>
+						Description
+					</th>
+					<th>
+						CreatedDate
+					</th>
+					<th>
+						Amount
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+
+@foreach (var item in Model) {
+				<tr>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+						@Html.ActionLink("Delete", "Delete", new { id=item.ID })
+					</td>
+					<td>
+						@item.Description
+					</td>
+					<td>
+						@String.Format("{0:g}", item.CreatedDate)
+					</td>
+					<td>
+						@String.Format("{0:F}", item.Amount)
+					</td>
+			</tr>
+}
+		</tbody>
+	</table>
+

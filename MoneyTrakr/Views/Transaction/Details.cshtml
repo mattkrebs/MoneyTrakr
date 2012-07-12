@@ -1,0 +1,36 @@
+﻿@model MoneyTrakr.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="page-header">
+	<h2>Details</h2>
+</div>
+
+		<fieldset>
+			<legend>Transaction</legend>
+			<br />
+
+            <div class="row">
+                <div class="span2">@Html.LabelFor(model => model.Description)</div>
+                <div class="span10">@Html.DisplayFor(model => model.Description)</div>
+            </div>
+
+            <div class="row">
+                <div class="span2">@Html.LabelFor(model => model.CreatedDate)</div>
+                <div class="span10">@Html.DisplayFor(model => model.CreatedDate)</div>
+            </div>
+
+            <div class="row">
+                <div class="span2">@Html.LabelFor(model => model.Amount)</div>
+                <div class="span10">@Html.DisplayFor(model => model.Amount)</div>
+            </div>
+		</fieldset>
+		<br />
+	<p>
+		@Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+		@Html.ActionLink("Back to List", "Index")
+	</p>
+</div>
+
