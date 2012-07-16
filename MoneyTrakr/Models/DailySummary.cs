@@ -35,7 +35,7 @@ namespace MoneyTrakr.Models
             {
                 DateTime now = today;
                 int daysBetweenPayment = 0;
-               
+                DateTime recurringDate = recur.StartDate.Date;
 
                 if (recur.RecurBiWeekly)
                 {
@@ -50,13 +50,14 @@ namespace MoneyTrakr.Models
                 {
                     
                     while (now <= maxDate)
-                    {                                                
-                        
-                        if(!recurrenceDates.ContainsKey(now)){
-                            recurrenceDates.Add(now, new List<TransactionItem>());    
-                        }
-                        recurrenceDates[now].Add(new TransactionItem(recur) { CreatedDate = now });
+                    {
 
+                        if (!recurrenceDates.ContainsKey(recurringDate))
+                        {
+                            recurrenceDates.Add(recurringDate, new List<TransactionItem>());    
+                        }
+                        recurrenceDates[recurringDate].Add(new TransactionItem(recur) { CreatedDate = recurringDate });
+                        recurringDate = recurringDate.AddMonths(1);
                         now = now.AddMonths(1);
                     }
                 }
@@ -64,12 +65,12 @@ namespace MoneyTrakr.Models
                 {
                     while (now <= maxDate)
                     {
-                        if (!recurrenceDates.ContainsKey(now))
+                        if (!recurrenceDates.ContainsKey(recurringDate))
                         {
-                            recurrenceDates.Add(now, new List<TransactionItem>());
+                            recurrenceDates.Add(recurringDate, new List<TransactionItem>());
                         }
-                        recurrenceDates[now].Add(new TransactionItem(recur) { CreatedDate = now });
-
+                        recurrenceDates[recurringDate].Add(new TransactionItem(recur) { CreatedDate = recurringDate });
+                        recurringDate = recurringDate.AddDays(daysBetweenPayment);
                         now = now.AddDays(daysBetweenPayment);
                     }
                 }                
@@ -92,7 +93,7 @@ namespace MoneyTrakr.Models
                 ds.Date = currentDay;
                 if (recurrenceDates.ContainsKey(currentDay))
                 {
-                    ds.TransactionItems.AddRange(recurrenceDates[currentDay]);                 
+                    ds.TransactionItems.AddRange(recurrenceDates[currentDay].OrderByDescending(x => x.IsStartAmount));                 
                 }
                 decimal todaysMoney = ds.TransactionItems.Sum(t=>t.Amount);
                 if(i>0){

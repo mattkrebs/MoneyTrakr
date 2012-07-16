@@ -19,13 +19,16 @@
 					<th>
 						RunningTotal
 					</th>
+                    <th>
+						date
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 
 
 
-
+@{decimal runningTotal = 0;}
 @for (int i = 0; i < Model.Count; i++)
 {   
     var item = Model[i];
@@ -33,7 +36,7 @@
     if(i>0){
         yesterdaysEndingBalance = Model[i - 1].EndingDayBalance;    
     }
-
+    
     if (item.TransactionItems.Count > 0)
     {
         var transactionItems = item.TransactionItems.OrderBy(o=>o.CreatedDate);
@@ -46,6 +49,8 @@
                 afterThisItemsBalance = yesterdaysEndingBalance + ti.Amount;
             }
             yesterdaysEndingBalance = afterThisItemsBalance;
+
+            runningTotal = ti.Amount + runningTotal;
         <tr>
             <td>
                 @String.Format("{0:C}", ti.Amount)
@@ -57,7 +62,10 @@
                 @String.Format("{0:g}", ti.CreatedDate)
             </td>
             <td>
-                @String.Format("{0:C}", afterThisItemsBalance)                
+                @String.Format("{0:C}", runningTotal)                
+            </td>
+            <td>
+             @String.Format("{0:g}", item.Date)
             </td>
         </tr>
         }

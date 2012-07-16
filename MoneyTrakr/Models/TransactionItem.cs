@@ -11,6 +11,8 @@ namespace MoneyTrakr.Models
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }
         public decimal RunningTotal { get; set; }
+        public bool IsStartAmount { get; set; }
+
 
 
         public TransactionItem(Transaction tran)
@@ -18,6 +20,7 @@ namespace MoneyTrakr.Models
             Amount = tran.Amount;
             Description = tran.Description;
             CreatedDate = tran.CreatedDate;
+            IsStartAmount = tran.StartTransaction;
         }
 
         public TransactionItem(Recurring recur)
@@ -25,6 +28,15 @@ namespace MoneyTrakr.Models
             Amount = recur.Amount;
             Description = recur.Description;
             CreatedDate = recur.StartDate;
+            IsStartAmount = false;
+        }
+
+        public TransactionItem(RecurringItem recur)
+        {
+            Amount = recur.Amount;
+            Description = recur.Description;
+            CreatedDate = recur.StartDate;
+            IsStartAmount = false;
         }
 
 
@@ -63,7 +75,7 @@ namespace MoneyTrakr.Models
 
         }
 
-        public static List<ProjectionData> GetGroupedProjectionData(int futureDays)
+        public static List<ProjectionData> GetGroupedProjectionData(int futureMonths)
         {
             MoneyTrakrEntities db = new MoneyTrakrEntities();
             List<TransactionItem> AllLineItems = new List<TransactionItem>();
@@ -74,12 +86,25 @@ namespace MoneyTrakr.Models
             {
                 AllLineItems.Add(new TransactionItem(trans));
             }
-            foreach (RecurringItem recurs in RecurringItem.GetAllRecurringItems(startDate, futureDays))
+            foreach (RecurringItem recurs in RecurringItem.GetAllRecurringItems(startDate, futureMonths))
             {
-               // AllLineItems.Add(new TransactionItem(recurs));
+               AllLineItems.Add(new TransactionItem(recurs));
             }
             List<TransactionItem> sortedItems = TransactionItem.CalculateTotals(AllLineItems.Where(y => y.CreatedDate >= startDate).OrderBy(x => x.CreatedDate).ToList());
-
+            decimal cumulativeBalance = 0;
+            List<DailySummary> summaries = new List<DailySummary>();
+            for (int i = 0; i < sortedItems.Count; i++)
+            {
+                DailySummary ds = new DailySummary();
+                ds.Date = sortedItems[i].CreatedDate;
+                cumulativeBalance = cumulativeBalance + sortedItems[i].Amount;
+                if (i >0)
+                    ds.EndingDayBalance = sortedItems[i].Amount;
+                else
+                    ds.EndingDayBalance = sortedItems[i].Amount + cumulativeBalance; 
+               
+            
+            }
 
             List<ProjectionData> grouped = (from p in sortedItems
                           group p by new { month = p.CreatedDate.Month, year = p.CreatedDate.Year } into d

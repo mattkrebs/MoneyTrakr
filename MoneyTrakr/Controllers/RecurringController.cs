@@ -46,6 +46,7 @@ namespace MoneyTrakr.Controllers
         {
             if (ModelState.IsValid)
             {
+                recurring.StartDate.AddHours(6);
                 db.Recurrings.Add(recurring);
                 db.SaveChanges();
                 return RedirectToAction("Index");  

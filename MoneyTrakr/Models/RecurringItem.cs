@@ -20,7 +20,7 @@ namespace MoneyTrakr.Models
         }
 
 
-        public static List<RecurringItem> GetAllRecurringItems(DateTime StartDate, int futureDays)
+        public static List<RecurringItem> GetAllRecurringItems(DateTime StartDate, int futureMonths)
         {
             List<RecurringItem> items = new List<RecurringItem>();
             MoneyTrakrEntities db = new MoneyTrakrEntities();
@@ -39,7 +39,7 @@ namespace MoneyTrakr.Models
 
                 int daysTally = 0;
 
-                foreach (DateTime day in EachDay(recur.StartDate, DateTime.Now.AddDays(futureDays)))
+                foreach (DateTime day in EachDay(recur.StartDate, DateTime.Now.AddMonths(futureMonths)))
                 {
                     if (day.Date >= StartDate.Date)
                     {
