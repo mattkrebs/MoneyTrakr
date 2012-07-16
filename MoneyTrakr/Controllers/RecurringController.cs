@@ -11,7 +11,7 @@ namespace MoneyTrakr.Controllers
 { 
     public class RecurringController : Controller
     {
-        private MoneyTrakrEntities db = new MoneyTrakrEntities();
+        private MoneyTrakrModel db = new MoneyTrakrModel();
 
         //
         // GET: /Recuring/

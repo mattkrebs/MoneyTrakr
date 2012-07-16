@@ -13,10 +13,10 @@ using System.Data.Entity.Infrastructure;
 
 namespace MoneyTrakr
 {
-    public partial class MoneyTrakrEntities : DbContext
+    public partial class MoneyTrakrModel : DbContext
     {
-        public MoneyTrakrEntities()
-            : base("name=MoneyTrakrEntities")
+        public MoneyTrakrModel()
+            : base("name=MoneyTrakrModel")
         {
         }
     
@@ -25,8 +25,8 @@ namespace MoneyTrakr
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<User> Users { get; set; }
         public DbSet<Recurring> Recurrings { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

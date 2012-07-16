@@ -23,9 +23,9 @@ namespace MoneyTrakr.Models
 
         public static List<DailySummary> GetDailySummary(int daysInFuture){
 
-           
 
-            MoneyTrakrEntities db = new MoneyTrakrEntities();
+
+            MoneyTrakrModel db = new MoneyTrakrModel();
             DateTime startDate = db.Transactions.Where(t => t.StartTransaction).FirstOrDefault().CreatedDate.Date;
             var recurrenceDates = new Dictionary<DateTime,List<TransactionItem>>();
             DateTime today = DateTime.Now.Date;

@@ -75,6 +75,11 @@
     <Compile Include="Models\ProjectionData.cs" />
     <Compile Include="Models\RecurringItem.cs" />
     <Compile Include="Models\TransactionItem.cs" />
+    <Compile Include="MoneyTrakrEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoneyTrakrEntity.edmx</DependentUpon>
+    </Compile>
     <Compile Include="MoneyTrakrModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,11 +89,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MoneyTrakrModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MoneyTrakrModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MoneyTrakrModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recurring.cs">
@@ -195,18 +195,6 @@
     <None Include="CodeTemplates\AddView\CSHTML\Edit.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Empty.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\List.tt" />
-    <EntityDeploy Include="MoneyTrakrModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MoneyTrakrModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="MoneyTrakrModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MoneyTrakrModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="MoneyTrakrModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MoneyTrakrModel.cs</LastGenOutput>
-    </None>
     <Content Include="Views\Transaction\Index.cshtml" />
     <Content Include="Views\Transaction\Details.cshtml" />
     <Content Include="Views\Transaction\Create.cshtml" />
@@ -221,6 +209,18 @@
     <Content Include="Views\Transaction\Start.cshtml" />
     <Content Include="Views\Shared\GroupedProjectedPartialView.cshtml" />
     <Content Include="Views\Shared\ProjectedPartialView.cshtml" />
+    <EntityDeploy Include="MoneyTrakrEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MoneyTrakrEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MoneyTrakrModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MoneyTrakrModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="MoneyTrakrModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MoneyTrakrModel.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -16,7 +16,7 @@
 
 var loader = new MetadataLoader(this);
 var region = new CodeRegion(this);
-var inputFile = @"MoneyTrakrModel.edmx";
+var inputFile = @"MoneyTrakrEntity.edmx";
 var ItemCollection = loader.CreateEdmItemCollection(inputFile);
 
 Code = new CodeGenerationTools(this);

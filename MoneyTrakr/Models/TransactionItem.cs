@@ -56,7 +56,7 @@ namespace MoneyTrakr.Models
 
         public static List<TransactionItem> GetAllTransactionsItems()
         {
-            MoneyTrakrEntities db = new MoneyTrakrEntities();
+            MoneyTrakrModel db = new MoneyTrakrModel();
             List<TransactionItem> AllLineItems = new List<TransactionItem>();
            
             DateTime startDate = db.Transactions.OrderBy(x => x.CreatedDate).FirstOrDefault().CreatedDate;
@@ -77,7 +77,7 @@ namespace MoneyTrakr.Models
 
         public static List<ProjectionData> GetGroupedProjectionData(int futureMonths)
         {
-            MoneyTrakrEntities db = new MoneyTrakrEntities();
+            MoneyTrakrModel db = new MoneyTrakrModel();
             List<TransactionItem> AllLineItems = new List<TransactionItem>();
 
             DateTime startDate = db.Transactions.OrderBy(x => x.CreatedDate).FirstOrDefault().CreatedDate;
@@ -117,7 +117,7 @@ namespace MoneyTrakr.Models
 
         public static List<TransactionItem> GetProjectionData(int futureDays)
         {
-            MoneyTrakrEntities db = new MoneyTrakrEntities();
+            MoneyTrakrModel db = new MoneyTrakrModel();
             List<TransactionItem> AllLineItems = new List<TransactionItem>();
 
             DateTime startDate = db.Transactions.OrderBy(x => x.CreatedDate).FirstOrDefault().CreatedDate;

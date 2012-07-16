@@ -10,7 +10,7 @@ namespace MoneyTrakr.Controllers
     {
         //
         // GET: /Api/
-        public MoneyTrakrEntities db = new MoneyTrakrEntities();
+        public MoneyTrakrModel db = new MoneyTrakrModel();
         [HttpPost]
         public JsonResult AddTransaction(Transaction transaction)
         {

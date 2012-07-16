@@ -23,7 +23,7 @@ namespace MoneyTrakr.Models
         public static List<RecurringItem> GetAllRecurringItems(DateTime StartDate, int futureMonths)
         {
             List<RecurringItem> items = new List<RecurringItem>();
-            MoneyTrakrEntities db = new MoneyTrakrEntities();
+            MoneyTrakrModel db = new MoneyTrakrModel();
             foreach (Recurring recur in db.Recurrings.Where(x => x.Automatic).ToList())
             {
                 int days = 0;

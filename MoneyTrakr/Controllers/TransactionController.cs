@@ -12,9 +12,9 @@ namespace MoneyTrakr.Controllers
 { 
     public class TransactionController : Controller
     {
-        private MoneyTrakrEntities db = new MoneyTrakrEntities();
+        private MoneyTrakrModel db = new MoneyTrakrModel();
 
-        //
+        //Server=107d983c-033c-448d-8b99-a090017367f8.sqlserver.sequelizer.com;Database=db107d983c033c448d8b99a090017367f8;User ID=dnjqajdmneiuncvj;Password=YCMHgP5T7gAZ877HdWKZ8xcbfdxTgmwmkcURTTgBKKQ34qEHkTTSC8wAALCcqjMU;
         // GET: /Transaction/
 
         public ViewResult Index()
