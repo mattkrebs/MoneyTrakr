@@ -18,12 +18,7 @@ namespace MoneyTrakr.Web.Models
         }
 
 
-
-        
-
-
         public static List<DailySummary> GetDailySummary(int daysInFuture){
-
 
 
             MoneyTrakrEntities db = new MoneyTrakrEntities();
