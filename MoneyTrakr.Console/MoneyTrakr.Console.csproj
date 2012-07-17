@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Projects\Ratchet Research And Development\Pivot\3rdParty\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
