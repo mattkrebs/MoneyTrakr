@@ -10,15 +10,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace MoneyTrakr
+namespace MoneyTrakr.Framework
 {
-    public partial class User
+    public partial class Transaction
     {
         public int ID { get; set; }
-        public string UserName { get; set; }
-        public string EmailAddress { get; set; }
-        public string Password { get; set; }
+        public string Description { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public decimal Amount { get; set; }
+        public bool StartTransaction { get; set; }
         public int AccountID { get; set; }
     }
     

@@ -1,5 +1,3 @@
-USE [MoneyTrakr]
-GO
 
 /****** Object:  Table [dbo].[Recurring]    Script Date: 07/12/2012 17:04:13 ******/
 SET ANSI_NULLS ON

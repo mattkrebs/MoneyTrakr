@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MoneyTrakr.Framework;
 
-namespace MoneyTrakr.Models
+namespace MoneyTrakr.Web.Models
 {
     public class RecurringItem
     {
@@ -23,7 +24,7 @@ namespace MoneyTrakr.Models
         public static List<RecurringItem> GetAllRecurringItems(DateTime StartDate, int futureMonths)
         {
             List<RecurringItem> items = new List<RecurringItem>();
-            MoneyTrakrModel db = new MoneyTrakrModel();
+            MoneyTrakrEntities db = new MoneyTrakrEntities();
             foreach (Recurring recur in db.Recurrings.Where(x => x.Automatic).ToList())
             {
                 int days = 0;

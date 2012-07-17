@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MoneyTrakr.Framework;
 
-namespace MoneyTrakr.Models
+namespace MoneyTrakr.Web.Models
 {
     public class TransactionItem
     {
@@ -56,7 +57,7 @@ namespace MoneyTrakr.Models
 
         public static List<TransactionItem> GetAllTransactionsItems()
         {
-            MoneyTrakrModel db = new MoneyTrakrModel();
+            MoneyTrakrEntities db = new MoneyTrakrEntities();
             List<TransactionItem> AllLineItems = new List<TransactionItem>();
            
             DateTime startDate = db.Transactions.OrderBy(x => x.CreatedDate).FirstOrDefault().CreatedDate;
@@ -65,11 +66,7 @@ namespace MoneyTrakr.Models
             {
                 AllLineItems.Add(new TransactionItem(trans));
             }
-            foreach (RecurringItem recurs in RecurringItem.GetAllRecurringItems(startDate))
-            {
-               // AllLineItems.Add(new TransactionItem(recurs));
-            }
-
+           
             return TransactionItem.CalculateTotals(AllLineItems.Where(y => y.CreatedDate >= startDate).OrderBy(x => x.CreatedDate).ToList());
             
 
@@ -77,7 +74,7 @@ namespace MoneyTrakr.Models
 
         public static List<ProjectionData> GetGroupedProjectionData(int futureMonths)
         {
-            MoneyTrakrModel db = new MoneyTrakrModel();
+            MoneyTrakrEntities db = new MoneyTrakrEntities();
             List<TransactionItem> AllLineItems = new List<TransactionItem>();
 
             DateTime startDate = db.Transactions.OrderBy(x => x.CreatedDate).FirstOrDefault().CreatedDate;
@@ -86,7 +83,7 @@ namespace MoneyTrakr.Models
             {
                 AllLineItems.Add(new TransactionItem(trans));
             }
-            foreach (RecurringItem recurs in RecurringItem.GetAllRecurringItems(startDate, futureMonths))
+            foreach (RecurringItem recurs in RecurringItem.GetAllRecurringItems(DateTime.Now.AddDays(1).Date, futureMonths))
             {
                AllLineItems.Add(new TransactionItem(recurs));
             }
@@ -117,7 +114,7 @@ namespace MoneyTrakr.Models
 
         public static List<TransactionItem> GetProjectionData(int futureDays)
         {
-            MoneyTrakrModel db = new MoneyTrakrModel();
+            MoneyTrakrEntities db = new MoneyTrakrEntities();
             List<TransactionItem> AllLineItems = new List<TransactionItem>();
 
             DateTime startDate = db.Transactions.OrderBy(x => x.CreatedDate).FirstOrDefault().CreatedDate;

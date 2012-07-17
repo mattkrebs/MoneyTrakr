@@ -10,18 +10,16 @@
 using System;
 using System.Collections.Generic;
 
-namespace MoneyTrakr
+namespace MoneyTrakr.Framework
 {
-    public partial class Recurring
+    public partial class User
     {
         public int ID { get; set; }
-        public string Description { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public bool Automatic { get; set; }
-        public bool RecurWeekly { get; set; }
-        public bool RecurBiWeekly { get; set; }
-        public bool RecurMontly { get; set; }
-        public decimal Amount { get; set; }
+        public string UserName { get; set; }
+        public string EmailAddress { get; set; }
+        public string Password { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public int AccountID { get; set; }
     }
     
 }

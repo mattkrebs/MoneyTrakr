@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MoneyTrakr.Models
+namespace MoneyTrakr.Web.Models
 {
     public class ProjectionData
     {

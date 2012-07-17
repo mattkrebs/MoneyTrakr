@@ -5,13 +5,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MoneyTrakr;
+using MoneyTrakr.Framework;
 
 namespace MoneyTrakr.Controllers
 { 
     public class RecurringController : Controller
     {
-        private MoneyTrakrModel db = new MoneyTrakrModel();
+        private MoneyTrakrEntities db = new MoneyTrakrEntities();
 
         //
         // GET: /Recuring/
@@ -46,6 +46,7 @@ namespace MoneyTrakr.Controllers
         {
             if (ModelState.IsValid)
             {
+                recurring.AccountID = 1;
                 recurring.StartDate.AddHours(6);
                 db.Recurrings.Add(recurring);
                 db.SaveChanges();
@@ -72,6 +73,7 @@ namespace MoneyTrakr.Controllers
         {
             if (ModelState.IsValid)
             {
+                recurring.AccountID = 1;
                 db.Entry(recurring).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

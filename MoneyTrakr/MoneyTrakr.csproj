@@ -10,8 +10,8 @@
     <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MoneyTrakr</RootNamespace>
-    <AssemblyName>MoneyTrakr</AssemblyName>
+    <RootNamespace>MoneyTrakr.Web</RootNamespace>
+    <AssemblyName>MoneyTrakr.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
@@ -34,8 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Projects\Ratchet Research And Development\Pivot\3rdParty\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -75,31 +76,7 @@
     <Compile Include="Models\ProjectionData.cs" />
     <Compile Include="Models\RecurringItem.cs" />
     <Compile Include="Models\TransactionItem.cs" />
-    <Compile Include="MoneyTrakrEntity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MoneyTrakrEntity.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="MoneyTrakrModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MoneyTrakrModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MoneyTrakrModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MoneyTrakrModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recurring.cs">
-      <DependentUpon>MoneyTrakrModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Transaction.cs">
-      <DependentUpon>MoneyTrakrModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>MoneyTrakrModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-overrides.css" />
@@ -172,7 +149,12 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyTrakr.Framework\MoneyTrakr.Framework.csproj">
+      <Project>{DF5C2CAF-A967-439D-A801-D50BAECCAAB4}</Project>
+      <Name>MoneyTrakr.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -209,18 +191,6 @@
     <Content Include="Views\Transaction\Start.cshtml" />
     <Content Include="Views\Shared\GroupedProjectedPartialView.cshtml" />
     <Content Include="Views\Shared\ProjectedPartialView.cshtml" />
-    <EntityDeploy Include="MoneyTrakrEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MoneyTrakrEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="MoneyTrakrModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MoneyTrakrModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="MoneyTrakrModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MoneyTrakrModel.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

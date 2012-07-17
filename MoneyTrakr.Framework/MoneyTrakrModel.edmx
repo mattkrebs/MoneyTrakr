@@ -4,11 +4,11 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db107d983c033c448d8b99a090017367f8Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="db107d983c033c448d8b99a090017367f8ModelStoreContainer">
-          <EntitySet Name="Recurring" EntityType="db107d983c033c448d8b99a090017367f8Model.Store.Recurring" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Transactions" EntityType="db107d983c033c448d8b99a090017367f8Model.Store.Transactions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="User" EntityType="db107d983c033c448d8b99a090017367f8Model.Store.User" store:Type="Tables" Schema="dbo" />
+    <Schema Namespace="MoneyTrakrModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MoneyTrakrModelStoreContainer">
+          <EntitySet Name="Recurring" EntityType="MoneyTrakrModel.Store.Recurring" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transactions" EntityType="MoneyTrakrModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="MoneyTrakrModel.Store.User" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="Recurring">
           <Key>
@@ -22,6 +22,7 @@
           <Property Name="RecurBiWeekly" Type="bit" Nullable="false" />
           <Property Name="RecurMontly" Type="bit" Nullable="false" />
           <Property Name="Amount" Type="decimal" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Transactions">
           <Key>
@@ -38,22 +39,21 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="AccountID" Type="int" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="db107d983c033c448d8b99a090017367f8Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="MoneyTrakrModel" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Recurrings" EntityType="db107d983c033c448d8b99a090017367f8Model.Recurring" />
-          <EntitySet Name="Transactions" EntityType="db107d983c033c448d8b99a090017367f8Model.Transaction" />
-          <EntitySet Name="Users" EntityType="db107d983c033c448d8b99a090017367f8Model.User" />
+      <Schema Namespace="MoneyTrakrModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MoneyTrakrEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Recurrings" EntityType="MoneyTrakrModel.Recurring" />
+          <EntitySet Name="Transactions" EntityType="MoneyTrakrModel.Transaction" />
+          <EntitySet Name="Users" EntityType="MoneyTrakrModel.User" />
         </EntityContainer>
         <EntityType Name="Recurring">
           <Key>
@@ -67,6 +67,7 @@
           <Property Name="RecurBiWeekly" Type="Boolean" Nullable="false" />
           <Property Name="RecurMontly" Type="Boolean" Nullable="false" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="AccountID" Nullable="false" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -95,10 +96,11 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db107d983c033c448d8b99a090017367f8ModelStoreContainer" CdmEntityContainer="MoneyTrakrModel">
+        <EntityContainerMapping StorageEntityContainer="MoneyTrakrModelStoreContainer" CdmEntityContainer="MoneyTrakrEntities">
           <EntitySetMapping Name="Recurrings">
-            <EntityTypeMapping TypeName="db107d983c033c448d8b99a090017367f8Model.Recurring">
+            <EntityTypeMapping TypeName="MoneyTrakrModel.Recurring">
               <MappingFragment StoreEntitySet="Recurring">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -111,7 +113,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Transactions">
-            <EntityTypeMapping TypeName="db107d983c033c448d8b99a090017367f8Model.Transaction">
+            <EntityTypeMapping TypeName="MoneyTrakrModel.Transaction">
               <MappingFragment StoreEntitySet="Transactions">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -123,7 +125,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="db107d983c033c448d8b99a090017367f8Model.User">
+            <EntityTypeMapping TypeName="MoneyTrakrModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -155,10 +157,10 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="MoneyTrakrEntity">
-        <EntityTypeShape EntityType="db107d983c033c448d8b99a090017367f8Model.Recurring" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
-        <EntityTypeShape EntityType="db107d983c033c448d8b99a090017367f8Model.Transaction" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="db107d983c033c448d8b99a090017367f8Model.User" Width="1.5" PointX="2.75" PointY="3.75" Height="2.1725878906249996" IsExpanded="true" />
+      <Diagram Name="MoneyTrakrModel">
+        <EntityTypeShape EntityType="MoneyTrakrModel.Recurring" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyTrakrModel.Transaction" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyTrakrModel.User" Width="1.5" PointX="2.75" PointY="3.75" Height="2.1725878906249996" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>

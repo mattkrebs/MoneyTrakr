@@ -1,5 +1,3 @@
-USE [MoneyTrakr]
-GO
 
 /****** Object:  Table [dbo].[User]    Script Date: 07/12/2012 17:04:43 ******/
 SET ANSI_NULLS ON
@@ -23,3 +21,4 @@ CREATE TABLE [dbo].[User](
 
 GO
 
+Server=107d983c-033c-448d-8b99-a090017367f8.sqlserver.sequelizer.com;Database=db107d983c033c448d8b99a090017367f8;User ID=dnjqajdmneiuncvj;Password=YCMHgP5T7gAZ877HdWKZ8xcbfdxTgmwmkcURTTgBKKQ34qEHkTTSC8wAALCcqjMU;

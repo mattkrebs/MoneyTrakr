@@ -11,12 +11,12 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-namespace MoneyTrakr
+namespace MoneyTrakr.Framework
 {
-    public partial class MoneyTrakrModel : DbContext
+    public partial class MoneyTrakrEntities : DbContext
     {
-        public MoneyTrakrModel()
-            : base("name=MoneyTrakrModel")
+        public MoneyTrakrEntities()
+            : base("name=MoneyTrakrEntities")
         {
         }
     

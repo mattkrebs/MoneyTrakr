@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MoneyTrakr.Framework;
 
 namespace MoneyTrakr.Controllers
 {
@@ -10,7 +11,7 @@ namespace MoneyTrakr.Controllers
     {
         //
         // GET: /Api/
-        public MoneyTrakrModel db = new MoneyTrakrModel();
+        public MoneyTrakrEntities db = new MoneyTrakrEntities();
         [HttpPost]
         public JsonResult AddTransaction(Transaction transaction)
         {

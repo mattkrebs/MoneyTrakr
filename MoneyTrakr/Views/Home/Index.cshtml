@@ -47,8 +47,8 @@
      <div id="chart_div" style="width: 900px; height: 500px;"></div>
 </div>
 <div>
-    @Html.Partial("GroupedProjectedPartialView", MoneyTrakr.Models.TransactionItem.GetGroupedProjectionData(6))
+    @Html.Partial("GroupedProjectedPartialView", MoneyTrakr.Web.Models.TransactionItem.GetGroupedProjectionData(6))
 </div>
 <div>
-    @Html.Partial("ProjectedPartialView", MoneyTrakr.Models.DailySummary.GetDailySummary(180))
+    @Html.Partial("ProjectedPartialView", MoneyTrakr.Web.Models.DailySummary.GetDailySummary(180))
 </div>
