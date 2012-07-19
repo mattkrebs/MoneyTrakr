@@ -75,6 +75,7 @@
     <Compile Include="Models\DailySummary.cs" />
     <Compile Include="Models\ProjectionData.cs" />
     <Compile Include="Models\RecurringItem.cs" />
+    <Compile Include="Models\Summary.cs" />
     <Compile Include="Models\TransactionItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

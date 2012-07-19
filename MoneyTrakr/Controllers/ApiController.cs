@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MoneyTrakr.Framework;
+using MoneyTrakr.Web.Models;
 
 namespace MoneyTrakr.Controllers
 {
@@ -12,6 +13,7 @@ namespace MoneyTrakr.Controllers
         //
         // GET: /Api/
         public MoneyTrakrEntities db = new MoneyTrakrEntities();
+
         [HttpPost]
         public JsonResult AddTransaction(Transaction transaction)
         {
@@ -23,5 +25,25 @@ namespace MoneyTrakr.Controllers
           
         }
 
+
+
+        public JsonResult GetSummary()
+        {
+            decimal runningTotal = 0;
+            Summary summary = new Summary();
+            var summaries = DailySummary.GetDailySummary(180);
+
+            foreach (var item in summaries)
+            {
+                foreach (TransactionItem t in item.TransactionItems)
+                {
+                    runningTotal = runningTotal + t.Amount;
+                }
+            }
+
+            summary.CurrentBalance = runningTotal;
+            return Json(summary);
+
+        }
     }
 }
