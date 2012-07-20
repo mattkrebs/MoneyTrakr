@@ -26,7 +26,7 @@ namespace MoneyTrakr.Controllers
         }
 
 
-
+        [HttpGet]
         public JsonResult GetSummary()
         {
             decimal runningTotal = 0;
