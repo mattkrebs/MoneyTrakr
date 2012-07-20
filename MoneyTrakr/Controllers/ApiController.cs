@@ -29,20 +29,8 @@ namespace MoneyTrakr.Controllers
         [HttpGet]
         public JsonResult GetSummary()
         {
-            decimal runningTotal = 0;
-            Summary summary = new Summary();
-            var summaries = DailySummary.GetDailySummary(180);
-
-            foreach (var item in summaries)
-            {
-                foreach (TransactionItem t in item.TransactionItems)
-                {
-                    runningTotal = runningTotal + t.Amount;
-                }
-            }
-
-            summary.CurrentBalance = runningTotal;
-            return Json(summary, JsonRequestBehavior.AllowGet);
+           
+            return Json(Summary.GetSummary(), JsonRequestBehavior.AllowGet);
 
         }
     }
