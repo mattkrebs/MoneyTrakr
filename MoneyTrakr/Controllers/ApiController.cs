@@ -42,7 +42,7 @@ namespace MoneyTrakr.Controllers
             }
 
             summary.CurrentBalance = runningTotal;
-            return Json(summary);
+            return Json(summary, JsonRequestBehavior.AllowGet);
 
         }
     }
