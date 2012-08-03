@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MoneyTrakr.Framework;
 using MoneyTrakr.Web.Models;
+using System.Data;
 
 namespace MoneyTrakr.Controllers
 {
@@ -17,15 +18,24 @@ namespace MoneyTrakr.Controllers
         [HttpPost]
         public JsonResult AddTransaction(Transaction transaction)
         {
-             
+            if (transaction.ID == 0)
+            {
                 db.Transactions.Add(transaction);
+            }
+            else
+            {
+                db.Entry(transaction).State = EntityState.Modified;
+            }
                 db.SaveChanges();
 
                 return Json(transaction);
-          
         }
 
-
+        [HttpGet]
+        public JsonResult GetTransaction(int id)
+        {
+            return Json(db.Transactions.Find(id));
+        }
         [HttpGet]
         public JsonResult GetSummary()
         {

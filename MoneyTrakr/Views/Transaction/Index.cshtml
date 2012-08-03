@@ -9,6 +9,8 @@
 </div>
 		<p>
 			@Html.ActionLink("Create New", "Create")
+            <br />
+            @Html.ActionLink("Reset All", "Reset", null, new { onclick = "return confirm('Are you sure you wish to reset all? This can NOT be undone!!');" }) 
 		</p>
 		<table class="table table-striped">
 			<thead>

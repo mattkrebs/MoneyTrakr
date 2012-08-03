@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+@*<script type="text/javascript" src="https://www.google.com/jsapi"></script>
  <script type="text/javascript">
      google.load("visualization", "1", { packages: ["corechart"] });
      google.setOnLoadCallback(drawChart);
@@ -35,18 +35,10 @@
 
         
      }
-    </script>
+    </script>*@
 <div class="page-header">
     <h2>@ViewBag.Message</h2>
 </div>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">
-        http://asp.net/mvc</a>.
-</p>
-<div>
-     <div id="chart_div" style="width: 900px; height: 500px;"></div>
-</div>
-
 <div>
     @Html.Partial("ProjectedPartialView", MoneyTrakr.Web.Models.DailySummary.GetDailySummary(180))
 </div>

@@ -39,6 +39,16 @@ namespace MoneyTrakr.Controllers
             return View("Create");
         }
 
+        public ActionResult Reset()
+        {
+            foreach (Transaction tran in db.Transactions)
+            {
+                db.Transactions.Remove(tran);
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         //
         // POST: /Transaction/Create
 
