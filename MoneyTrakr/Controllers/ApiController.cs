@@ -34,7 +34,7 @@ namespace MoneyTrakr.Controllers
         [HttpGet]
         public JsonResult GetTransaction(int id)
         {
-            return Json(db.Transactions.Find(id));
+            return Json(db.Transactions.Find(id), JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetSummary()
