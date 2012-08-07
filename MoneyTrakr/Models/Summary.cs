@@ -17,13 +17,23 @@ namespace MoneyTrakr.Web.Models
             MoneyTrakrEntities db = new MoneyTrakrEntities();
             Summary summary = new Summary();
             summary.CurrentBalance = 0;
+            summary.ProjectionMonths = 1;
             summary.Transactions = new List<Transaction>();
+           
             foreach (var transaction in db.Transactions.OrderBy(x => x.StartTransaction).OrderBy(y=>y.CreatedDate))
             {
                 summary.CurrentBalance = summary.CurrentBalance + transaction.Amount;
                 summary.Transactions.Add(transaction);
             }
 
+
+            foreach (RecurringItem recurs in RecurringItem.GetAllRecurringItems(DateTime.Now.AddDays(1), summary.ProjectionMonths))
+            {
+                summary.ProjectionBalance = summary.ProjectionBalance + recurs.Amount;
+              
+            }
+            summary.ProjectionBalance = summary.ProjectionBalance + summary.CurrentBalance;
+            
             return summary;
         }
     }

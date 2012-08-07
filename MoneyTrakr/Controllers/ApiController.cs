@@ -39,9 +39,7 @@ namespace MoneyTrakr.Controllers
         [HttpGet]
         public JsonResult GetSummary()
         {
-           
             return Json(Summary.GetSummary(), JsonRequestBehavior.AllowGet);
-
         }
     }
 }

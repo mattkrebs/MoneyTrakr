@@ -25,7 +25,7 @@ namespace MoneyTrakr.Web.Models
         {
             List<RecurringItem> items = new List<RecurringItem>();
             MoneyTrakrEntities db = new MoneyTrakrEntities();
-            foreach (Recurring recur in db.Recurrings.Where(x => x.Automatic).ToList())
+            foreach (Recurring recur in db.Recurrings.ToList())
             {
                 int days = 0;
                 int months = 0;
@@ -46,28 +46,30 @@ namespace MoneyTrakr.Web.Models
                     {
                         if (days != 0)
                         {
-
-                            items.Add(new RecurringItem()
+                            if (recur.StartDate.AddDays(daysTally).Date == day.Date)
                             {
-                                Amount = recur.Amount,
-                                Description = recur.Description,
-                                StartDate = recur.StartDate.AddDays(daysTally)
-                            });
+                                items.Add(new RecurringItem()
+                                {
+                                    Amount = recur.Amount,
+                                    Description = recur.Description,
+                                    StartDate = recur.StartDate.AddDays(daysTally)
+                                });
 
-
+                            }
                             daysTally = daysTally + days;
                         }
                         else
                         {
                             if (recur.StartDate.AddMonths(months).Date == day.Date)
                             {
-
-                                items.Add(new RecurringItem()
-                                {
-                                    Amount = recur.Amount,
-                                    Description = recur.Description,
-                                    StartDate = recur.StartDate.AddMonths(months)
-                                });
+                                
+                                    items.Add(new RecurringItem()
+                                    {
+                                        Amount = recur.Amount,
+                                        Description = recur.Description,
+                                        StartDate = recur.StartDate.AddMonths(months)
+                                    });
+                                
                                 months++;
                             }
                         }
