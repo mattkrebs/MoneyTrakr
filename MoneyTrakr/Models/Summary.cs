@@ -11,6 +11,7 @@ namespace MoneyTrakr.Web.Models
         public int ProjectionMonths { get; set; }
         public decimal ProjectionBalance { get; set; }
         public List<Transaction> Transactions { get; set; }
+        public List<RecurringItem> RecurringItems { get; set; }
 
         public static Summary GetSummary()
         {
@@ -26,8 +27,9 @@ namespace MoneyTrakr.Web.Models
                 summary.Transactions.Add(transaction);
             }
 
+            summary.RecurringItems = RecurringItem.GetAllRecurringItems(DateTime.Now.AddDays(1), summary.ProjectionMonths);
 
-            foreach (RecurringItem recurs in RecurringItem.GetAllRecurringItems(DateTime.Now.AddDays(1), summary.ProjectionMonths))
+            foreach (RecurringItem recurs in summary.RecurringItems)
             {
                 summary.ProjectionBalance = summary.ProjectionBalance + recurs.Amount;
               
